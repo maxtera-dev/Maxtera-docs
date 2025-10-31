@@ -1,4 +1,3 @@
-
 # 🧑‍💻 Contributing to Maxtera
 
 Thank you for your interest in contributing to **Maxtera** — a product of **MAXTERS LTD**.  
@@ -22,7 +21,6 @@ This document explains how we collaborate, structure commits, and ensure code qu
 2. **Clone** your fork:
    ```bash
    git clone https://github.com/<your-username>/Maxtera-backend.git
-
 3. Create a feature branch:
 
 git checkout -b feature/add-wallet-endpoint
