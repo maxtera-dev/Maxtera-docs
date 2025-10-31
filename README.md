@@ -125,8 +125,9 @@ MAXTERS LTD
 📧 support@maxtera.ng
 🌐 www.maxtera.com
 📍 Nigeria
+---
 
-
+📘 [View Full System Architecture](./SYSTEM_ARCHITECTURE.md)
 ---
 
 © 2025 MAXTERS LTD — All rights reserved.
