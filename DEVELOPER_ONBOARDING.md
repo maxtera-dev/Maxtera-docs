@@ -1,73 +1,73 @@
 # 👩‍💻 Maxtera Developer Onboarding Guide
-
-Welcome to **Maxtera**, a fintech platform by **MAXTERS LTD** — empowering users to buy data, airtime, pay bills, and manage their wallets securely.
-
-This document is designed to help new developers get started quickly and maintain consistent development standards.
+Welcome to **Maxtera**, a fintech platform by **MAXTERS LTD** — empowering users with financial freedom.  
+This guide helps you set up your local development environment, understand the project structure, and start contributing confidently.
 
 ---
 
-## 🧩 1. Project Overview
+## 🧩 1. Overview
+Maxtera consists of two major codebases:
 
-**Architecture:**
-- **Backend:** Django + Django REST Framework (Python 3.x)
-- **Frontend:** Next.js + TypeScript + TailwindCSS
-- **Database:** PostgreSQL
-- **Docs:** Markdown-based in `maxtera-docs` repo
-- **Integrations:** OnePipe API (for deposits, withdrawals, and transfers)
-
-**Repositories:**
-| Component | Repository | Description |
+| Component | Tech Stack | Repository |
 |------------|-------------|-------------|
-| Backend | [maxtera-backend](https://github.com/maxters-ltd/maxtera-backend) | API, authentication, and core business logic |
-| Frontend | [maxtera-frontend](https://github.com/maxters-ltd/maxtera-frontend) | Web client (dashboard and user interface) |
-| Documentation | [maxtera-docs](https://github.com/maxters-ltd/maxtera-docs) | Documentation hub for architecture, onboarding, and business guides |
+| Backend API | Django + DRF + PostgreSQL | [maxtera-backend](https://github.com/maxters-ltd/maxtera-backend) |
+| Frontend UI | Next.js + TypeScript + TailwindCSS | [maxtera-frontend](https://github.com/maxters-ltd/maxtera-frontend) |
+| Documentation | Markdown + GitHub | [maxtera-docs](https://github.com/maxters-ltd/maxtera-docs) |
 
 ---
 
-## ⚙️ 2. Local Setup
+## ⚙️ 2. Prerequisites
+Ensure you have the following installed on your system:
 
-### Prerequisites
-Ensure the following are installed:
-- **Git**
-- **Python 3.10+**
-- **Node.js 18+**
-- **PostgreSQL**
-- **npm or yarn**
-- **VS Code (recommended)**
+### For Backend
+- Python 3.10+
+- pip / pipenv / poetry
+- PostgreSQL
+- Git
+- Docker (optional, for containerization)
+- Postman (for API testing)
+
+### For Frontend
+- Node.js 18+
+- npm or yarn
+- Git
+- Vercel CLI (optional for deployment preview)
 
 ---
 
-### 🧠 Backend Setup (Django)
+## 🪜 3. Setup Instructions
 
+### Backend Setup
 ```bash
-# Clone repository
+# Clone repo
 git clone https://github.com/maxters-ltd/maxtera-backend.git
 cd maxtera-backend
 
-# Create and activate virtual environment
+# Create virtual environment
 python -m venv venv
-source venv/bin/activate   # (or venv\Scripts\activate on Windows)
+source venv/bin/activate   # On Windows: venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Setup environment variables
+# Setup environment
 cp .env.example .env
+# Edit the .env file and add your credentials (DB, SECRET_KEY, etc.)
 
-# Run migrations
+# Apply migrations
 python manage.py migrate
 
-# Start development server
+# Run server
 python manage.py runserver
 
-Default URL: http://127.0.0.1:8000
+Backend runs at:
+👉 http://127.0.0.1:8000
 
 
 ---
 
-💻 Frontend Setup (Next.js)
+Frontend Setup
 
-# Clone repository
+# Clone repo
 git clone https://github.com/maxters-ltd/maxtera-frontend.git
 cd maxtera-frontend
 
@@ -75,147 +75,140 @@ cd maxtera-frontend
 npm install
 
 # Setup environment
-cp .env.example .env.local
+cp .env.example .env
+# Add API base URL:
+# NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000
 
-# Start the dev server
+# Run the app
 npm run dev
 
-Frontend runs on: http://localhost:3000
+Frontend runs at:
+👉 http://localhost:3000
 
 
 ---
 
-🔐 3. Environment Variables
+🧠 4. Project Structure (Overview)
 
-Each repo contains .env.example.
-Developers should copy and rename it to .env or .env.local before running.
+Each repo includes:
 
-Example Backend Variables:
+README.md → Quick setup guide
 
-SECRET_KEY=your_django_secret_key
-DEBUG=True
-DATABASE_URL=postgres://user:password@localhost:5432/maxtera
+CONTRIBUTING.md → How to contribute safely
 
-Example Frontend Variables:
+ROADMAP.md → Current project status & upcoming milestones
 
-NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000
-NEXT_PUBLIC_APP_NAME=Maxtera
-NEXT_PUBLIC_SUPPORT_EMAIL=support@maxtera.ng
+.env.example → Example environment variables
+
 
 
 ---
 
-🧭 4. Git & Branch Rules
+🌱 5. Branching Rules
+
+We follow a Git branching model for safety and clarity:
 
 Branch	Purpose
 
-main	Stable production code only
-dev	Development and testing
-feature/*	New features (e.g., feature/wallet-module)
-fix/*	Bug fixes (e.g., fix/payment-error)
+main	Stable production-ready code
+develop	Integration branch for latest tested features
+feature/*	New features in progress (e.g., feature/wallet-system)
+bugfix/*	For fixing bugs
+hotfix/*	Urgent patches after deployment
 
 
-Workflow:
+Example
 
-1. Create a branch from dev
-
-
-2. Commit changes using clear messages (e.g., feat: add OnePipe integration)
-
-
-3. Submit a pull request (PR) to dev
+git checkout -b feature/add-onpipe-integration
+# After coding
+git push origin feature/add-onpipe-integration
 
 
-4. PRs are reviewed before merging to main
+---
+
+✅ 6. Code Standards
+
+Python (Backend)
+
+Follow PEP8 style guide
+
+Use descriptive variable names
+
+Include docstrings for all public methods
+
+Keep functions <50 lines
+
+
+TypeScript (Frontend)
+
+Use ESLint + Prettier
+
+Prefer functional components + hooks
+
+Keep components modular and reusable
+
+CSS handled via Tailwind classes
+
+
+
+---
+
+🧪 7. Testing
+
+Backend
+
+python manage.py test
+
+Frontend
+
+npm test
+
+
+---
+
+🧩 8. Collaboration Workflow
+
+1. Fork the repo and create your own branch.
+
+
+2. Implement your changes.
+
+
+3. Test thoroughly.
+
+
+4. Open a Pull Request (PR) to the develop branch.
+
+
+5. PRs are reviewed before merging to main.
 
 
 
 
 ---
 
-🧠 5. Coding Standards
+🧭 9. Communication
 
-Backend (Django)
+All collaboration is tracked via:
 
-Follow PEP8 style guide.
+GitHub Issues — For tasks and bugs
 
-Use serializers and viewsets properly.
+GitHub Projects — For roadmap tracking
 
-Write reusable utility functions.
-
-Include docstrings for all models and APIs.
-
-
-Frontend (Next.js)
-
-Use TypeScript for all components.
-
-Follow folder-based architecture (pages, components, services).
-
-Use Axios for HTTP calls.
-
-Store global state using Context or Zustand.
-
-
-Commit Message Convention
-
-feat: add new transaction endpoint
-fix: resolve wallet balance mismatch
-refactor: improve data service logic
-docs: update API docs
-
-
----
-
-🧪 6. Testing & Quality
-
-Backend: pytest or Django’s TestCase
-
-Frontend: jest or react-testing-library
-
-Run tests before any pull request.
+README / ROADMAP / DOCS — Always up to date
 
 
 
 ---
 
-🚀 7. Deployment (Staging & Production)
+🤝 10. Welcome Aboard
 
-Environment	Platform	Repo
+You’re officially part of the Maxtera Development Team 🎉
+Build responsibly, test thoroughly, and push confidently!
 
-Backend	Render / Railway	maxtera-backend
-Frontend	Vercel / Netlify	maxtera-frontend
-Docs	GitHub Pages (optional)	maxtera-docs
-
-
-
----
-
-🔑 8. Access & Security
-
-API keys, secrets, and credentials are managed by the project admin (Maxters Ltd).
-
-Never push .env files or credentials to GitHub.
-
-Report any security concerns in SECURITY.md.
+> 💬 Contact: support@maxtera.ng
+🌐 Website: https://maxtera.com
 
 
-
----
-
-👥 9. Support Contacts
-
-Role	Contact
-
-Technical Lead	dev@maxtera.ng
-Project Owner	admin@maxters.ng
-Support	support@maxtera.ng
-
-
-
----
-
-Welcome aboard 🚀
-You’re now part of Maxtera — Your Money, Your Power.
 
 ---
